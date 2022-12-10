@@ -7,6 +7,6 @@ routes.post("/addFavorite" ,utils.authMiddleware,FavoriteController.addFavorite)
 routes.get("/getFavoriteById/",utils.authMiddleware, FavoriteController.getFavoriteById);
 // routes.get("/searchProductByName/", FavoriteController.searchProductByName);
 // routes.put("/updateProductById/:id",utils.authMiddleware, FavoriteController.updateProductById);
-// routes.delete("/deleteProductById/:id", FavoriteController.deleteProductById);
+routes.post("/removeProductById/",utils.authMiddleware, FavoriteController.removeFavoriteById);
 
 module.exports = routes;
