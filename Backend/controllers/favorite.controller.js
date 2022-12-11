@@ -140,22 +140,6 @@ exports.removeFavoriteById = async function (req, res) {
       }
     }
 
-    
-    // var favorite = await Favorite.findByIdAndDelete(id);
-    // if (favorite) {
-    //   res.status(200).json({
-    //     code: 200,
-    //     success: true,
-    //     data: favorite,
-    //     message: "Favorite deleted successfully",
-    //   });
-    // } else {
-    //   res.status(500).json({
-    //     code: 500,
-    //     success: true,
-    //     message: "Already deleted this favorite or invalid favorite id",
-    //   });
-    // }
   } catch (error) {
     res
       .status(500)

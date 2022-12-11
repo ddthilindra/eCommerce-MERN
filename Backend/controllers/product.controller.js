@@ -59,6 +59,32 @@ exports.getProductById = async function (req, res) {
   }
 };
 
+exports.getProductByUserId = async function (req, res) {
+  try {
+    const id = req.jwt.sub.id;
+    const product = await Product.find({ createdBy: id });
+    console.log(product);
+    if (!product) {
+      return res.status(200).json({
+        code: 200,
+        success: false,
+        message: `No product found!`,
+      });
+    } else {
+      return res.status(200).json({
+        code: 200,
+        success: true,
+        data: product,
+        message: `Product is received`,
+      });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ code: 500, success: false, message: "Internal Server Error" });
+  }
+};
+
 exports.searchProductByName = async function (req, res) {
   try {
     const searchName = req.query.name;
