@@ -13,8 +13,8 @@ import {
 import { DeleteOutlined, EditOutlined, Favorite } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import ProductViewPopup from "./Popups/ProductViewPopup";
-import DeleteNewsPopup from "../Component/Popups/DeleteNewsPopup";
-import NewsPopup from "../Component/Popups/ProductPopup";
+import DeleteProductPopup from "./Popups/DeleteProductPopup";
+import ProductPopup from "../Component/Popups/ProductPopup";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -93,24 +93,17 @@ export default function ProductCard(props) {
           <CardHeader
             avatar={
               <IconButton onClick={() => handleFav(props)}>
-                {/* <p>{news._id}</p> */}
-
                 <Favorite />
               </IconButton>
             }
             action={
               <div>
                 <IconButton onClick={() => openInPopup(props._id, "update")}>
-                  {/* <p>{news._id}</p> */}
                   <EditOutlined />
                 </IconButton>
-                {/* {role == "editor" ? ( */}
-                {/* "" */}
-                {/* ) : ( */}
                 <IconButton>
                   <DeleteOutlined onClick={() => openInDeletePopup(props)} />
                 </IconButton>
-                {/* )} */}
               </div>
             }
             title={props.title}
@@ -134,21 +127,21 @@ export default function ProductCard(props) {
           >
             View Product
           </Button>
-          <NewsPopup
+          <ProductPopup
             openNewsPopup={openPopup}
             setNewsOpenPopup={setOpenPopup}
             newsRecordForEdit={newsRecordForEdit}
-          ></NewsPopup>
+          ></ProductPopup>
           <ProductViewPopup
             openProductPopup={openProductPopup}
             setOpenProductPopup={setOpenProductPopup}
             productRecordForView={productRecordForView}
           ></ProductViewPopup>
-          <DeleteNewsPopup
+          <DeleteProductPopup
             openDeletePopup={openDeletePopup}
             setOpenDeletePopup={setOpenDeletePopup}
             newsRecordForDelete={newsRecordForDelete}
-          ></DeleteNewsPopup>
+          ></DeleteProductPopup>
         </CardContent>
       </Card>
     </Grid>
