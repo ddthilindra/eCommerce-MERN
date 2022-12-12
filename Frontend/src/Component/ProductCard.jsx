@@ -10,11 +10,12 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
+import { DeleteOutlined, EditOutlined, Favorite } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import ProductViewPopup from "./Popups/ProductViewPopup";
 import DeleteNewsPopup from "../Component/Popups/DeleteNewsPopup";
 import NewsPopup from "../Component/Popups/ProductPopup";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   CardMedia: {
@@ -44,7 +45,7 @@ export default function ProductCard(props) {
 
   const [newsRecordForDelete, setnewsRecordForDelete] = useState(null);
   const [openDeletePopup, setOpenDeletePopup] = useState(false);
-  
+
   const [newsRecordForEdit, setNewsRecordForEdit] = useState(null);
   const [openPopup, setOpenPopup] = useState(false);
 
@@ -73,6 +74,13 @@ export default function ProductCard(props) {
     setOpenDeletePopup(true);
   };
 
+  const handleFav = (item) => {
+    console.log("first", item._id);
+    var favList = JSON.parse(localStorage.getItem("fav")) || "[]";
+    favList.push(item._id);
+    localStorage.setItem("fav", JSON.stringify(favList));
+  };
+
   return (
     <Grid item className={classes.card}>
       <Card>
@@ -84,14 +92,15 @@ export default function ProductCard(props) {
 
           <CardHeader
             avatar={
-              <Avatar className={classes.avatar}>
-                {" "}
-                {/* {props.category[0].toUpperCase()} */}
-              </Avatar>
+              <IconButton onClick={() => handleFav(props)}>
+                {/* <p>{news._id}</p> */}
+
+                <Favorite />
+              </IconButton>
             }
             action={
               <div>
-                <IconButton onClick={() => openInPopup(props.id, "update")}>
+                <IconButton onClick={() => openInPopup(props._id, "update")}>
                   {/* <p>{news._id}</p> */}
                   <EditOutlined />
                 </IconButton>
@@ -126,10 +135,10 @@ export default function ProductCard(props) {
             View Product
           </Button>
           <NewsPopup
-          openNewsPopup={openPopup}
-          setNewsOpenPopup={setOpenPopup}
-          newsRecordForEdit={newsRecordForEdit}
-        ></NewsPopup>
+            openNewsPopup={openPopup}
+            setNewsOpenPopup={setOpenPopup}
+            newsRecordForEdit={newsRecordForEdit}
+          ></NewsPopup>
           <ProductViewPopup
             openProductPopup={openProductPopup}
             setOpenProductPopup={setOpenProductPopup}

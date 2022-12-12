@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "d6f792d9-b723-4de0-a4fd-5380da0bb34a",
+		"name": "Code94Labs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15328209"
+	},
+	"item": [
+		{
+			"name": "Vendor",
+			"item": [
+				{
+					"name": "Register Vendor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"vendor\",\r\n    \"lastName\": \"vendor\",\r\n    \"email\": \"vendor@mail.com\",\r\n    \"mobile\": \"0705577355\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/vendor/addVendor",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"vendor",
+								"addVendor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"email\": \"vendor@mail.com\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/vendor/login",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"vendor",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "addProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "asdasd",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "asdasdasdasd",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "asdasdasd",
+									"type": "text"
+								},
+								{
+									"key": "thumbnailResult",
+									"type": "file",
+									"src": "/C:/Users/ddthi/OneDrive/Desktop/asdsaasd.jpg"
+								},
+								{
+									"key": "imageResult",
+									"type": "file",
+									"src": "/C:/Users/ddthi/OneDrive/Desktop/asdsaasd.jpg"
+								},
+								{
+									"key": "description",
+									"value": "asdasda",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localhost}}/product/addProduct",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"product",
+								"addProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2ODIyNDM0NzYsImV4cCI6MTY3MDY4MzQ1MzA3Nn0.cuJNFTDh8GP8KDTNGgSZyGUdmUmf7UBW7Oyv-s0bxeU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "asdasd",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "21",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "asdasdasd",
+									"type": "text"
+								},
+								{
+									"key": "thumbnailResult",
+									"type": "file",
+									"src": "/C:/Users/ddthi/OneDrive/Desktop/asdsaasd.jpg"
+								},
+								{
+									"key": "imageResult",
+									"type": "file",
+									"src": "/C:/Users/ddthi/OneDrive/Desktop/asdsaasd.jpg"
+								},
+								{
+									"key": "description",
+									"value": "asdasda",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localhost}}/product/updateProductById/63948eb7f63c257154337a22",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"product",
+								"updateProductById",
+								"63948eb7f63c257154337a22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProduct",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{localhost}}/product/getAllProduct",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"product",
+								"getAllProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/product/getProductById/63948eb7f63c257154337a22",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"product",
+								"getProductById",
+								"63948eb7f63c257154337a22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductByUserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{localhost}}/product/getProductByUserId/",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"product",
+								"getProductByUserId",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProductById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/product/deleteProductById/63945da530e7ca45f86facef",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"product",
+								"deleteProductById",
+								"63945da530e7ca45f86facef"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchProductByName",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{localhost}}/product/searchProductByName/?name=asdasdasdsda",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"product",
+								"searchProductByName",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "asdasdasdsda"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorite",
+			"item": [
+				{
+					"name": "addFavorite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vendorId\": \"vendor\",\r\n    \"favProducts\": [\"63948eb7f63c257154337a22\", \"63948eb7f63c257154337a22\", \"63948eb7f63c257154337a22\"]    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/favorite/addFavorite",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"favorite",
+								"addFavorite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFavoriteById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{localhost}}/favorite/getFavoriteById",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"favorite",
+								"getFavoriteById"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeFavoriteById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
