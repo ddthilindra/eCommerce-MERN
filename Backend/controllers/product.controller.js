@@ -5,7 +5,7 @@ const image = "not found";
 
 exports.addProduct = async function (req, res) {
   console.log(req.body);
-//   console.log(req.files.thumbnailResult[0].filename)
+  console.log(req.files.thumbnailResult[0].filename)
 
   const product = new Product({
     name: req.body.name,

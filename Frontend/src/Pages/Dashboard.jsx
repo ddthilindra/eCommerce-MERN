@@ -95,6 +95,8 @@ export default function Dashboard() {
 
   const [productRecordForEdit, setProductRecordForEdit] = useState(null);
   const [openPopup, setOpenPopup] = useState(false);
+
+
   const config = {
     headers: {
       Authorization:
@@ -118,6 +120,7 @@ export default function Dashboard() {
     }
     setOpenPopup(true);
   };
+
 
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -169,6 +172,7 @@ export default function Dashboard() {
                   setProductOpenPopup={setOpenPopup}
                   productRecordForEdit={productRecordForEdit}
                 ></ProductPopup>
+                
                 <div style={{ margin: "5% 5% 5% 5%" }}>
                   <Grid
                     container
@@ -185,7 +189,11 @@ export default function Dashboard() {
                     <Grid xs={6}>
                       <Container>
                         {product.map((data) => (
-                          <ProductCard {...data} />
+                          <ProductCard
+                            {...data}
+                            openInPopup={openInPopup}
+                            // openInDeletePopup={openInDeletePopup}
+                          />
                         ))}
                       </Container>
                     </Grid>

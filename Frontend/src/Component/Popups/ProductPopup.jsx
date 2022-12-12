@@ -63,12 +63,18 @@ export default function ProductPopup(props) {
   const [quantityHError, setquantityHError] = useState("");
   const [skuHError, setskuHError] = useState("");
 
-  const [Uimage, setUimage] = useState();
+  const [Timage, setTimage] = useState();
+  const [Nimage, setNimage] = useState();
 
   const handleFile = (e) => {
     const file = e.target.files[0];
     console.log(file);
-    setUimage(file);
+    setTimage(file);
+  };
+  const handleFile2 = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    setNimage(file);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,11 +94,12 @@ export default function ProductPopup(props) {
     }
 
     if (name && description && quantity) {
-      console.log(Uimage);
+      console.log(Timage);
       console.log(quantity);
 
       let formdata = new FormData();
-      // formdata.append("thumbnailResult", Uimage);
+      formdata.append("thumbnailResult", Timage);
+      formdata.append("imageResult", Nimage);
       formdata.append("name", name);
       formdata.append("description", description);
       formdata.append("quantity", quantity);
@@ -128,9 +135,9 @@ export default function ProductPopup(props) {
     }
 
     if (name && description && quantity) {
-      console.log(Uimage);
+      console.log(Timage);
       let formdata2 = new FormData();
-      // formdata2.append("thumbnailResult", Uimage);
+      // formdata2.append("thumbnailResult", Timage);
       formdata2.append("name", name);
       formdata2.append("description", description);
       formdata2.append("quantity", quantity);
@@ -258,7 +265,7 @@ export default function ProductPopup(props) {
         >
           <DialogContent >
             <Button variant="contained" component="label">
-              Upload
+              Upload 
               <input
                 hidden
                 accept="image/*"
@@ -276,7 +283,7 @@ export default function ProductPopup(props) {
                 accept="image/*"
                 multiple
                 type="file"
-                onChange={handleFile}
+                onChange={handleFile2}
               />
             </Button>
           </DialogContent>

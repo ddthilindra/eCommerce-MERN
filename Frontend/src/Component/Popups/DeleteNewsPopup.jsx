@@ -29,9 +29,10 @@ export default function DeleteProductPopup(props) {
 
   function deleteAdmin(e) {
     e.preventDefault();
+    console.log(values)
 
     axios
-      .delete(`http://localhost:8000/product/deleteProductById/${values._id}`, config)
+      .delete(`http://localhost:8000/product/deleteProductById/${values._id}`)
       .then((response) => {
         if (response.status == 200) {
           window.alert(`${response.data.message}`);
@@ -57,7 +58,7 @@ export default function DeleteProductPopup(props) {
         </DialogTitle>
         <DialogContent dividers>
           <DialogContentText>
-            Are you sure you want to delete <b>{values.title}</b> ?
+            Are you sure you want to delete <b>{values.name}</b> ?
             <br />
             This action cannot be undone!
           </DialogContentText>
