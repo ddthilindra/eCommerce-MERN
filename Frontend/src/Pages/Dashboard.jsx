@@ -20,6 +20,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import SwipeableViews from "react-swipeable-views";
 import ProductPopup from "../Component/Popups/ProductPopup";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductsAction } from "../redux/actions/products/productActions";
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -96,23 +98,24 @@ export default function Dashboard() {
   const [productRecordForEdit, setProductRecordForEdit] = useState(null);
   const [openPopup, setOpenPopup] = useState(false);
 
-
   const config = {
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs",
     },
   };
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/product/getProductByUserId/`, config)
-
-      .then((res) => {
-        console.log("Getting from:", res.data.data[0]);
-        setProduct(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    //dispatch action
+    dispatch(fetchProductsAction());
+  }, [dispatch]);
+  //GRAB THE DATA FROM OUR STORE
+  const { products, loading } = useSelector((state) => {
+    return state.productsList;
+  });
+  // setProduct(product.data.data);
+  console.log(products);
+  console.log(loading);
 
   const openInPopup = async (id, update) => {
     if (update) {
@@ -120,7 +123,6 @@ export default function Dashboard() {
     }
     setOpenPopup(true);
   };
-
 
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -172,7 +174,7 @@ export default function Dashboard() {
                   setProductOpenPopup={setOpenPopup}
                   productRecordForEdit={productRecordForEdit}
                 ></ProductPopup>
-                
+
                 <div style={{ margin: "5% 5% 5% 5%" }}>
                   <Grid
                     container
@@ -181,7 +183,7 @@ export default function Dashboard() {
                   >
                     <Grid xs={6}>
                       <Container>
-                        {product.map((data) => (
+                        {products?.map((data) => (
                           <ProductCard {...data} />
                         ))}
                       </Container>

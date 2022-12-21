@@ -13,8 +13,8 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-// import imga from "../../assets/Asus.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { createProductAction } from "../../redux/actions/products/productActions";
 
 const useStyles = makeStyles({
   popup: {
@@ -27,8 +27,9 @@ export default function ProductPopup(props) {
   const classes = useStyles();
   const [categories, setcategories] = useState([]);
   const [btnText, setbtnText] = useState("Submit");
-  const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs"
-    
+  const token =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2Mzk0NWQ3YjMwZTdjYTQ1Zjg2ZmFjZWQiLCJmaXJzdE5hbWUiOiJ2ZW5kb3IiLCJsYXN0TmFtZSI6InZlbmRvciIsImVtYWlsIjoidmVuZG9yQG1haWwuY29tIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE2NzA2Njc2NDQxODcsImV4cCI6MTY3MDY2ODg1Mzc4N30.VcI4FwC8tRq5hdTiDlhN7zEzd_odv17haFbzxekTJcs";
+
   const config = {
     headers: { Authorization: token },
   };
@@ -46,7 +47,7 @@ export default function ProductPopup(props) {
     setquantityError(false);
     setquantityHError(false);
 
-    window.location.reload();
+    // window.location.reload();
   };
   const [name, setname] = useState("");
   const [description, setdescription] = useState("");
@@ -76,6 +77,10 @@ export default function ProductPopup(props) {
     console.log(file);
     setNimage(file);
   };
+  //use dispatch
+  const dispatch = useDispatch();
+
+  //handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     setnameError(false);
@@ -93,30 +98,32 @@ export default function ProductPopup(props) {
       setquantityHError("Required");
     }
 
-    if (name && description && quantity) {
-      console.log(Timage);
-      console.log(quantity);
+    // const productData = {
+    //   Timage,
+    //   Nimage,
+    //   name,
+    //   description,
+    //   quantity,
+    //   sku,
+    // };
 
-      let formdata = new FormData();
-      formdata.append("thumbnailResult", Timage);
-      formdata.append("imageResult", Nimage);
-      formdata.append("name", name);
-      formdata.append("description", description);
-      formdata.append("quantity", quantity);
-      formdata.append("sku", sku);
-      console.log(formdata);
-      axios
-        .post(`http://localhost:8000/product/addProduct`, formdata, config)
-        .then((res) => {
-          if (res.data.code == 200 && res.data.success == true) {
-            window.alert(res.data.message);
-          } else {
-            window.alert(res.data.message);
-          }
-        })
-        .catch((err) => console.log(err));
-    }
+    let formdata = new FormData();
+    formdata.append("thumbnailResult", Timage);
+    formdata.append("imageResult", Nimage);
+    formdata.append("name", name);
+    formdata.append("description", description);
+    formdata.append("quantity", quantity);
+    formdata.append("sku", sku);
+    console.log(formdata);
+
+    dispatch(createProductAction(formdata));
+
   };
+  const { Product, loading } = useSelector(state => {
+    return state.productCreated;
+  });
+  console.log(Product);
+  console.log(loading);
   const handleUpdate = (e) => {
     e.preventDefault();
     setnameError(false);
@@ -263,9 +270,9 @@ export default function ProductPopup(props) {
           className="dlgcontainer"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <DialogContent >
+          <DialogContent>
             <Button variant="contained" component="label">
-              Upload 
+              Upload
               <input
                 hidden
                 accept="image/*"
@@ -275,7 +282,7 @@ export default function ProductPopup(props) {
               />
             </Button>
           </DialogContent>
-          <DialogContent >
+          <DialogContent>
             <Button variant="contained" component="label">
               Upload
               <input

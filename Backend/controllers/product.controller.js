@@ -11,8 +11,8 @@ exports.addProduct = async function (req, res) {
     name: req.body.name,
     quantity: req.body.quantity,
     sku: req.body.sku,
-    thumbnailResult: `http://localhost:8000/uploads/${req.files.thumbnailResult[0].filename}` || image,
-    imageResult: `http://localhost:8000/uploads/${req.files.imageResult[0].filename}` || image,
+    thumbnailResult: `file:///D:/Tutorial/Code94Labs/Backend/uploads/${req.files.thumbnailResult[0].filename}` || image,
+    imageResult: `file:///D:/Tutorial/Code94Labs/Backend/uploads/${req.files.imageResult[0].filename}` || image,
     description: req.body.description,
     createdBy: req.jwt.sub.id,
   });

@@ -1,13 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 // import userReducer from '../reducers/userAuthReducer';
 // import userProfileReducer from '../reducers/userProfileReducer';
 // import userUpdateReducer from '../reducers/userUpdateReducer';
 // import booksListReducer from '../reducers/books/booksListReducer';
 // import bookDetailReducer from '../reducers/books/bookDetailsReducer';
 // import usersListReducer from '../reducers/usersListReducer';
-import createProductReducer from '../reducers/product/createProductReducer';
+import createProductReducer from "../reducers/product/createProductReducer";
+import ProductsListReducer from "../reducers/product/productsListReducer";
 
 const middleware = [thunk];
 
@@ -16,7 +17,7 @@ const reducer = combineReducers({
   // userProfile: userProfileReducer,
   // updatedUser: userUpdateReducer,
   productCreated: createProductReducer,
-  // productsList: booksListReducer,
+  productsList: ProductsListReducer,
   // productDetails: bookDetailReducer,
   // usersList: usersListReducer,
 });
@@ -29,18 +30,18 @@ const reducer = combineReducers({
 
 //Get the user in local storage
 
-const userAuthFromStorage = localStorage.getItem('userAuthData')
-  ? JSON.parse(localStorage.getItem('userAuthData'))
-  : null;
+// const userAuthFromStorage = localStorage.getItem("userAuthData")
+//   ? JSON.parse(localStorage.getItem("userAuthData"))
+//   : null;
 
-const initialState = {
-  userLogin: { userInfo: userAuthFromStorage },
-};
+// const initialState = {
+//   userLogin: { userInfo: userAuthFromStorage },
+// };
 
 const store = createStore(
   reducer,
-  initialState,
+  // initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
-export default store;
+export { store };
